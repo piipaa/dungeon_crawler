@@ -1,5 +1,6 @@
 from common.character_property import PlayerCharacter, EnemyCharacter
 
+
 def roll_for_initiative():
     import random
     initiative_roll = 0
@@ -10,7 +11,8 @@ def roll_for_initiative():
         character.initiative = initiative_roll
         print(character.initiative)
 
-## PLAYER CHARACTER CREATION
+
+# PLAYER CHARACTER CREATION
 # initializes 
 player_names = []
 player_count = int(input('How many players?\nEnter: '))
@@ -23,9 +25,9 @@ print('There are', player_count, 'players')
 # Iterates through list to apply PlayerCharacter class template
 for player in player_names:
     character = PlayerCharacter(
-    input("Enter %s's character name:" % player),
-    PlayerCharacter.input_ac(),
-    PlayerCharacter.input_hp()
+        input("Enter %s's character name:" % player),
+        PlayerCharacter.input_ac(),
+        PlayerCharacter.input_hp()
     )
     
     print("""--Player %s Info--
@@ -33,7 +35,7 @@ for player in player_names:
     Armor Class: %s
     Health: %s""" % (player, character.name, character.armor_class, character.max_health))
 
-## ENEMY CHARACTER CREATION
+# ENEMY CHARACTER CREATION
 # initialize
 enemy_names = []
 enemy_count = int(input("How many enemies?\nEnter: "))
@@ -45,9 +47,9 @@ print("There are", enemy_count, "enemies")
 
 for enemy in enemy_names:
     character = EnemyCharacter(
-    input("Enter %s's character name:" % enemy),
-    EnemyCharacter.input_ac(),
-    EnemyCharacter.input_hp()
+        input("Enter %s's character name:" % enemy),
+        EnemyCharacter.input_ac(),
+        EnemyCharacter.input_hp()
     )
     
     print("""--Enemy %s Info--
@@ -58,25 +60,25 @@ for enemy in enemy_names:
 in_initiative = input("Begin Initiative? (y/n)")
 
 while in_initiative == "y" or in_initiative == "Y":
-    ## player initiative
+    # player initiative
     # assigns d20 value to initiative_roll variable
     print("Starting initiative... all players please roll!")
     for character in PlayerCharacter.all_characters:
         roll_for_initiative()
     # sort the list of characters by their initiative attribute value
-    player_initiative_list = sorted(PlayerCharacter.all_characters, key=lambda character:character.initiative)
+    player_initiative_list = sorted(PlayerCharacter.all_characters, key=lambda character: character.initiative)
     
-    ## enemy initiative
+    # enemy initiative
     # assigns d20 value to initiative_roll variable
     print("Starting initiative... all enemies please roll!")
     for character in EnemyCharacter.all_enemies:
         roll_for_initiative()
 
     # sort the list of characters by their initiative attribute value
-    enemy_initiative_list = sorted(EnemyCharacter.all_enemies, key=lambda character:character.initiative)
+    enemy_initiative_list = sorted(EnemyCharacter.all_enemies, key=lambda character: character.initiative)
 
     total_initiative_list = player_initiative_list + enemy_initiative_list
-    total_sorted_initiative_list = sorted(total_initiative_list, key=lambda character:character.initiative)
+    total_sorted_initiative_list = sorted(total_initiative_list, key=lambda character: character.initiative)
 
     print("""The initiative order is...
     ---""")
@@ -94,5 +96,5 @@ while in_initiative == "y" or in_initiative == "Y":
         print("""Cleared initiative rolls. 
         Thanks for playing! 
         Exiting program...""")
-        #in_initiative = False
+        # in_initiative = False
         break
