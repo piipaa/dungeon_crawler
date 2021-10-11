@@ -30,16 +30,7 @@ class PlayerCharacter:
             max_health = input("Enter your character's maximum health:")
             max_health = isvalidnumber(max_health) 
         return max_health
-    
-    def roll_for_initiative():
-        import random
-        initiative_roll = 0
-        while initiative_roll == 0:
-            print("Rolling for initiative (d20)...")
-            initiative_roll = int(random.randint(1, 20))
-            print("%s rolled a %d." % (character.name, initiative_roll))
-            character.initiative = initiative_roll
-            print(character.initiative)
+
 
 class EnemyCharacter:
     all_enemies = [] 
@@ -63,13 +54,3 @@ class EnemyCharacter:
             max_health = input("Enter the foe's maximum health:")
             max_health = isvalidnumber(max_health) 
         return max_health
-    
-    def roll_for_initiative():
-        import random
-        initiative_roll = 0
-        while initiative_roll == 0:
-            print("Rolling for initiative (d20)...")
-            initiative_roll = int(random.randint(1, 20))
-            print("%s rolled a %d." % (character.name, initiative_roll))
-            character.initiative = initiative_roll
-            print(character.initiative)

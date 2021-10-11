@@ -1,5 +1,15 @@
 from common.character_property import PlayerCharacter, EnemyCharacter
 
+def roll_for_initiative():
+    import random
+    initiative_roll = 0
+    while initiative_roll == 0:
+        print("Rolling for initiative (d20)...")
+        initiative_roll = int(random.randint(1, 20))
+        print("%s rolled a %d." % (character.name, initiative_roll))
+        character.initiative = initiative_roll
+        print(character.initiative)
+
 ## PLAYER CHARACTER CREATION
 # initializes 
 player_names = []
@@ -52,7 +62,7 @@ while in_initiative == "y" or in_initiative == "Y":
     # assigns d20 value to initiative_roll variable
     print("Starting initiative... all players please roll!")
     for character in PlayerCharacter.all_characters:
-        PlayerCharacter.roll_for_initiative()
+        roll_for_initiative()
     # sort the list of characters by their initiative attribute value
     player_initiative_list = sorted(PlayerCharacter.all_characters, key=lambda character:character.initiative)
     
@@ -60,7 +70,7 @@ while in_initiative == "y" or in_initiative == "Y":
     # assigns d20 value to initiative_roll variable
     print("Starting initiative... all enemies please roll!")
     for character in EnemyCharacter.all_enemies:
-        EnemyCharacter.roll_for_initiative()
+        roll_for_initiative()
 
     # sort the list of characters by their initiative attribute value
     enemy_initiative_list = sorted(EnemyCharacter.all_enemies, key=lambda character:character.initiative)
